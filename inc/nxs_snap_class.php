@@ -17,7 +17,8 @@ if (!class_exists("NS_SNAutoPoster")) {
             //$options = array('nsOpenGraph'=>1);            
             $dbOptions = get_option($this->dbOptionsName);  $dbOptions['ver'] = 306; 
             $this->nxs_ntoptions = get_site_option($this->dbOptionsName);   $nxs_UPPath = 'nxs-snap-pro-upgrade';
-            $pf = ABSPATH . 'wp-content/plugins/'.$nxs_UPPath.'/'.$nxs_UPPath.'.php'; if (file_exists($pf) && !function_exists('nxs_getInitAdd') ) require_once $pf;          
+            $pf = WP_PLUGIN_DIR . '/'.$nxs_UPPath.'/'.$nxs_UPPath.'.php'; if (file_exists($pf) && !function_exists('nxs_getInitAdd') ) require_once $pf;          
+
             if ($nxs_isWPMU && $blog_id>1) { global $wpdb;  switch_to_blog(1); //$dbMUOptions = get_option($this->dbOptionsName);  
               $row = $wpdb->get_row("SELECT option_value from ".$wpdb->options." WHERE option_name='NS_SNAutoPoster'"); if ( is_object( $row ) ) $dbMUOptions = maybe_unserialize($row->option_value);
               if (function_exists('nxs_getInitAdd')) nxs_getInitAdd($dbMUOptions); restore_current_blog(); 
